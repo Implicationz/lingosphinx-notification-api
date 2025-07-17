@@ -1,8 +1,6 @@
 package com.lingosphinx.notification.dto;
 
-import com.lingosphinx.notification.domain.Notification;
-import com.lingosphinx.notification.domain.NotificationChannel;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.*;
 
 @Builder
@@ -10,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
 public class NotificationJobDto {
 
     private Long id;

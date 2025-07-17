@@ -38,7 +38,7 @@ public class SecurityConfiguration {
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
         )
         .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwt -> jwt

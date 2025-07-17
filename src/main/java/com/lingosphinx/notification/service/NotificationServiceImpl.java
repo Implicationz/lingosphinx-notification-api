@@ -2,8 +2,8 @@ package com.lingosphinx.notification.service;
 
 import com.lingosphinx.notification.domain.NotificationJob;
 import com.lingosphinx.notification.dto.NotificationDto;
-import com.lingosphinx.notification.exception.ResourceNotFoundException;
 import com.lingosphinx.notification.event.NotificationCreatedEvent;
+import com.lingosphinx.notification.exception.ResourceNotFoundException;
 import com.lingosphinx.notification.mapper.NotificationMapper;
 import com.lingosphinx.notification.repository.NotificationRepository;
 import com.lingosphinx.notification.repository.ReceiverRepository;

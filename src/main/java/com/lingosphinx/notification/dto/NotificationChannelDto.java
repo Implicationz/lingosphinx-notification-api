@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
 public class NotificationChannelDto {
 
     @Id
