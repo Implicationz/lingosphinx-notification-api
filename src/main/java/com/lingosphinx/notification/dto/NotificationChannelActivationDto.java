@@ -4,29 +4,21 @@ import com.lingosphinx.notification.domain.Notification;
 import com.lingosphinx.notification.domain.NotificationChannelStatus;
 import com.lingosphinx.notification.domain.NotificationChannelType;
 import com.lingosphinx.notification.domain.Receiver;
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class NotificationChannelDto {
+public class NotificationChannelActivationDto {
 
-
-    private Long id;
     private NotificationChannelType type = NotificationChannelType.FCM;
-    private Receiver receiver;
     private String token;
     @Builder.Default
     private int priority = 1;
-    @Builder.Default
-    private NotificationChannelStatus status = NotificationChannelStatus.ACTIVE;
-    @Builder.Default
-    private List<Notification> notification = new ArrayList<>();
-
 }

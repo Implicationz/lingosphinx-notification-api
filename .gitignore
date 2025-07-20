@@ -33,5 +33,6 @@ build/
 .vscode/
 
 .env.prod
+liquibase/.env
 
 firebase-service-account.json

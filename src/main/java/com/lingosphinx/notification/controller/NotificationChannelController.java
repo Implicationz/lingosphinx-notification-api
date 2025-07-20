@@ -21,7 +21,7 @@ public class NotificationChannelController {
 
     @PostMapping
     public ResponseEntity<NotificationChannelDto> create(@RequestBody @Valid NotificationChannelDto notificationChannel) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(notificationChannelService.createByCurrentUser(notificationChannel));
+        return ResponseEntity.status(HttpStatus.CREATED).body(notificationChannelService.create(notificationChannel));
     }
 
     @GetMapping("/{id}")

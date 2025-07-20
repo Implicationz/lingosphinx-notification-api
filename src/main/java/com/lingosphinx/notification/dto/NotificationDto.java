@@ -1,5 +1,6 @@
 package com.lingosphinx.notification.dto;
 
+import com.lingosphinx.notification.domain.NotificationChannelType;
 import jakarta.persistence.Entity;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class NotificationDto {
     private UUID receiver;
     String title;
     String message;
+    private List<NotificationChannelType> allowedChannelTypes = new ArrayList<>();
     private List<NotificationJobDto> jobs = new ArrayList<>();
 
 }

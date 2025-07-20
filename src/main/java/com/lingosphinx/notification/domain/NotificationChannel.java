@@ -16,6 +16,7 @@ public class NotificationChannel {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private NotificationChannelType type = NotificationChannelType.FCM;
 
     @ManyToOne(optional = false)
@@ -23,4 +24,12 @@ public class NotificationChannel {
 
     @Column(nullable = false)
     private String token;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private int priority = 1;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private NotificationChannelStatus status = NotificationChannelStatus.ACTIVE;
 }

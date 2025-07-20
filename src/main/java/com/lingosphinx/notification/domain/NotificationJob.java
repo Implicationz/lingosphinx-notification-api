@@ -21,7 +21,12 @@ public class NotificationJob {
     @ManyToOne(optional = false)
     private NotificationChannel channel;
 
+    @Builder.Default
+    @Column(nullable = false)
     private int trialCount = 0;
-    private NotificationJobStatus status = NotificationJobStatus.CREATED;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private NotificationJobStatus status = NotificationJobStatus.PENDING;
 
 }

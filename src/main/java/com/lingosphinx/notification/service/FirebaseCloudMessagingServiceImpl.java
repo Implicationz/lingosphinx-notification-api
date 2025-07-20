@@ -7,6 +7,7 @@ import com.lingosphinx.notification.domain.NotificationJob;
 import com.lingosphinx.notification.domain.NotificationJobStatus;
 import com.lingosphinx.notification.event.NotificationJobProcessingStartedEvent;
 import com.lingosphinx.notification.repository.NotificationJobRepository;
+import com.lingosphinx.notification.repository.NotificationJobSpecifications;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -29,10 +30,16 @@ public class FirebaseCloudMessagingServiceImpl {
     @EventListener
     @Transactional
     public void handleNotificationJobProcessingStarted(NotificationJobProcessingStartedEvent event) {
-        var notificationJobs = notificationJobRepository.findAll();
-        notificationJobs.stream()
-                .filter(job -> job.getChannel().getType() == NotificationChannelType.FCM)
-                .forEach(this::send);
+
+        log.info("FCM started processing");
+
+        var notificationJobs = notificationJobRepository
+                .findAllByChannel_TypeAndStatus(NotificationChannelType.FCM, NotificationJobStatus.PENDING)
+                .stream().toList();
+
+        log.info("FCM found {} jobs.", notificationJobs.size());
+
+        notificationJobs.forEach(this::send);
     }
 
     @Retryable(
@@ -42,12 +49,14 @@ public class FirebaseCloudMessagingServiceImpl {
     )
     @Transactional
     public void send(NotificationJob job) {
+        log.error("FCM started processing job: {}", job.getId());
+
         job.setTrialCount(job.getTrialCount() + 1);
         try {
             var notification = job.getNotification();
             var token = job.getChannel().getToken();
 
-            job.setStatus(NotificationJobStatus.SENT);
+            job.setStatus(NotificationJobStatus.PROCESSING);
 
             var message = Message.builder()
                     .setToken(token)

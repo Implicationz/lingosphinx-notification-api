@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Lutz (generated)" id="1752952335904-3">
+        <addColumn tableName="notification_channel">
+            <column name="priority" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Lutz (generated)" id="1752952335904-4">
+        <addColumn tableName="notification_channel">
+            <column name="status" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Lutz (generated)" id="1752952335904-1">
+        <addNotNullConstraint columnDataType="smallint(5)" columnName="status" tableName="notification_job" validate="true"/>
+    </changeSet>
+    <changeSet author="Lutz (generated)" id="1752952335904-2">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="type" tableName="notification_channel" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

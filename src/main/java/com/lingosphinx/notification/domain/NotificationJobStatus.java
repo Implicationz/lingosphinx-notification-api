@@ -1,8 +1,8 @@
 package com.lingosphinx.notification.domain;
 
 public enum NotificationJobStatus {
-    CREATED,
     PENDING,
+    PROCESSING,
     SENT,
     ERROR,
     FAILED

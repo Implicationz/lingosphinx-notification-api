@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class NotificationChannelImpl implements NotificationChannelService {
+public class NotificationChannelServiceImpl implements NotificationChannelService {
 
     private final NotificationChannelRepository notificationChannelRepository;
     private final NotificationChannelMapper notificationChannelMapper;
