@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
@@ -17,9 +18,9 @@ public class FirebaseCloudMessagingConfiguration {
 
     @Bean
     FirebaseApp firebaseApp(
-            @Value("${firebase.config-json}") String serviceAccountJson) throws IOException {
+            @Value("${firebase.config-path}") String serviceAccountPath) throws IOException {
 
-        try (var is = new ByteArrayInputStream(serviceAccountJson.getBytes(StandardCharsets.UTF_8))) {
+        try (var is = new FileInputStream(serviceAccountPath)) {
             var creds = GoogleCredentials.fromStream(is);
             var options = FirebaseOptions.builder()
                     .setCredentials(creds)

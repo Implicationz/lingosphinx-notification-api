@@ -18,4 +18,4 @@ cors:
 jwt:
   secret: ${JWT_SECRET}
 firebase:
-  config-json: ${FIREBASE_CONFIG_JSON:}
+  config-path: ${FIREBASE_CONFIG_PATH:}
