@@ -20,13 +20,13 @@ public class NotificationChannelDto {
 
     private Long id;
     private NotificationChannelType type = NotificationChannelType.FCM;
-    private Receiver receiver;
+    private ReceiverDto receiver;
     private String token;
     @Builder.Default
     private int priority = 1;
     @Builder.Default
     private NotificationChannelStatus status = NotificationChannelStatus.ACTIVE;
     @Builder.Default
-    private List<Notification> notification = new ArrayList<>();
+    private List<NotificationDto> notification = new ArrayList<>();
 
 }
