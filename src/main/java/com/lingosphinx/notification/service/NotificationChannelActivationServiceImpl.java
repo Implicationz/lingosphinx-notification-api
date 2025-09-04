@@ -27,8 +27,19 @@ public class NotificationChannelActivationServiceImpl implements NotificationCha
 
     @Override
     public NotificationChannelDto activateByCurrentUser(NotificationChannelActivationDto notificationChannelActivationDto) {
-
         var userId = userService.getCurrentUserId();
+
+        var existingChannel = notificationChannelRepository
+                .findByReceiver_UserIdAndType(userId, notificationChannelActivationDto.getType());
+
+        if (existingChannel.isPresent()) {
+            var channel = existingChannel.get();
+            channel.setToken(notificationChannelActivationDto.getToken());
+            var updatedChannel = notificationChannelRepository.save(channel);
+            log.info("NotificationChannel token renewed for user={}: id={}", userId, updatedChannel.getId());
+            return notificationChannelMapper.toDto(updatedChannel);
+        }
+
         var receiver = receiverRepository.findByUserId(userId)
                 .orElseGet(() -> {
                     var newReceiver = new Receiver();

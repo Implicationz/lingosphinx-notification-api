@@ -8,5 +8,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface NotificationChannelRepository extends JpaRepository<NotificationChannel, Long>, JpaSpecificationExecutor<NotificationChannel> {
-    Optional<NotificationChannel> findByReceiver_UserIdAndTypeAndToken(UUID userId, NotificationChannelType type, String token);
+    Optional<NotificationChannel> findByReceiver_UserIdAndType(UUID userId, NotificationChannelType type);
 }
